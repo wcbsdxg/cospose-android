@@ -13,9 +13,9 @@ android {
     signingConfigs {
         create("release") {
             storeFile = file("../cospose-release.jks")
-            storePassword = "cospose123"
+            storePassword = "Xhx88989."
             keyAlias = "cospose"
-            keyPassword = "cospose123"
+            keyPassword = "Xhx88989."
         }
     }
 
