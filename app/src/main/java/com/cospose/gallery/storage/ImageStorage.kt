@@ -45,6 +45,10 @@ class ImageStorage @Inject constructor(
             val mediumHeight = (mediumWidth * aspectRatio).toInt()
             val medium = Bitmap.createScaledBitmap(originalBitmap, mediumWidth, mediumHeight, true)
 
+            // Save dimensions before recycling
+            val savedWidth = originalBitmap.width
+            val savedHeight = originalBitmap.height
+
             // Save files with detected format
             val originalFile = File(imagesDir, "${id}_original.${formatInfo.extension}")
             val thumbFile = File(imagesDir, "${id}_thumb.${formatInfo.extension}")
@@ -65,8 +69,8 @@ class ImageStorage @Inject constructor(
                 filePath = originalFile.absolutePath,
                 thumbnailPath = thumbFile.absolutePath,
                 mediumPath = mediumFile.absolutePath,
-                width = originalBitmap.width,
-                height = originalBitmap.height,
+                width = savedWidth,
+                height = savedHeight,
                 fileSize = originalFile.length(),
                 mimeType = formatInfo.mimeType
             )
