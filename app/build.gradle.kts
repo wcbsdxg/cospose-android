@@ -10,6 +10,15 @@ android {
     namespace = "com.cospose.gallery"
     compileSdk = 35
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("../cospose-release.jks")
+            storePassword = "cospose123"
+            keyAlias = "cospose"
+            keyPassword = "cospose123"
+        }
+    }
+
     defaultConfig {
         applicationId = "com.cospose.gallery"
         minSdk = 26
@@ -24,6 +33,7 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
